@@ -1,6 +1,8 @@
 import numpy as np
 from pytable import Table
-from analysis.limits.errors import E
+import sys,os
+sys.path.append('/'+'/'.join(os.getcwd().strip('/').split('/')[:-1])+'/limits/')
+from errors import E
 
 def write_table(data, bgs, outname=None, signal=None, extra_hists=[],precision=2,sep = u"\u00B1".encode("utf-8"), binedge_fmt="{}-{}", fix_negative=True, binlabels=[], show_errors=True, cell_callback=None):
     tab = Table()
