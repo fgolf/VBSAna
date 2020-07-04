@@ -1,5 +1,5 @@
 therelease=CMSSW_9_4_9
-export SCRAM_ARCH=slc6_amd64_gcc700
+export SCRAM_ARCH=slc6_amd64_gcc630
 mkdir -p common
 if [ ! -d common/$therelease ]; then 
     cd common/ ;
@@ -26,7 +26,7 @@ export LANG=en_US.UTF-8
 # export PYTHONPATH=$PWD/analysis/bdt/root_numpy-4.7.2/lib/python2.7/site-packages/:$PYTHONPATH
 
 [[ -d ${ANABASE}/common/matplottery/ ]] || {
-    git clone git@github.com:shchauha/matplottery.git ${ANABASE}/common/matplottery/;
+    git clone git@github.com:aminj/matplottery.git ${ANABASE}/common/matplottery/;
     pip install --user matplotlib
     pip install --user uproot
     export PATH=/home/users/${USER}/.local/bin:$PATH
@@ -62,3 +62,8 @@ fi
     popd
 }
 #
+
+[[ -d ${ANABASE}/Software ]] || {
+    git clone git@github.com:cmstas/Software.git 
+}
+export PATH=$PATH:${ANABASE}/Software/niceplots
