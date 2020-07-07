@@ -27,6 +27,7 @@ procs_to_consider = [ # FIXME
     "flips_mc",
     "xg",
     "rares",
+    "vbs_hww",
 #    "data"
 #    "fakes",
 #    "fakes_mc_ml",
@@ -38,20 +39,20 @@ procs_to_consider = [ # FIXME
 #procs_to_consider = ["wz"]#
 
 basedirs ={
-#    2016: "/nfs-7/userdata/shchauha-2/tupler_babies/merged/FT/v3.31/year_2016_94x/skim/",
-#    2017: "/nfs-7/userdata/shchauha-2/tupler_babies/merged/FT/v3.31/year_2017/skim/",
-#    2018: "/nfs-7/userdata/shchauha-2/tupler_babies/merged/FT/v3.31/year_2018/skim/",
+    2016: "/nfs-7/userdata/fgolf/babies/v1/2016/",
+    2017: "/nfs-7/userdata/fgolf/babies/v1/2017/",
+    2018: "/nfs-7/userdata/fgolf/babies/v1/2018/",
 
-    2016: "/home/users/namin/2018/fourtop/all/FTAnalysis/analysis/yields/local/year_2016/",
-    2017: "/home/users/namin/2018/fourtop/all/FTAnalysis/analysis/yields/local/year_2017/",
-    2018: "/home/users/namin/2018/fourtop/all/FTAnalysis/analysis/yields/local/year_2018/",
+#    2016: "/home/users/namin/2018/fourtop/all/FTAnalysis/analysis/yields/local/year_2016/",
+#    2017: "/home/users/namin/2018/fourtop/all/FTAnalysis/analysis/yields/local/year_2017/",
+#    2018: "/home/users/namin/2018/fourtop/all/FTAnalysis/analysis/yields/local/year_2018/",
     }
 #outputdir = "outputs_v3p31_BDT" #
 #outputdir = "outputs_v3p31_loose" #
 #outputdir = "outputs_v3p31_loose_BDT" #
 #outputdir = "outputs_v3p31_BDT_NoAngleNoIso" #
 #outputdir = "outputs_v3p31_BDT_NoAngleNoIso_Flavor" #
-outputdir = "newcat" #
+outputdir = "v1" #
 options = {    
     # for SS
     #2016: "  doSS Data2016 new2016FRBins ReadBDT quiet ",
@@ -199,7 +200,7 @@ chs = {
         #"fcnc": make_objs(basedirs[2017]+"FCNC*.root", options=options[2017]),
         "fcnc_hut": make_objs(basedirs[2017]+"FCNC_hut*tauDecay.root", options=options[2017]), # samples for tauDecay
         "fcnc_hct": make_objs(basedirs[2017]+"FCNC_hct*tauDecay.root", options=options[2017]), # samples for tauDecay
-
+        "vbs_hww":  make_objs(basedirs[2017]+"vbs_hww.root", options=options[2017]),
         },
     2018: {
         "data": make_objs([basedirs[2018]+"ReRecoData*.root",
