@@ -30,6 +30,9 @@ labels = {
     "ss_mll"      : "SS m(ll)",
     "ml_mll"      : "OS m(ll)", 
     "mjj"         : "max m(jj)", 
+    "mjj_deta"    : "max m(jj) deta", 
+    "mjj_dphi"    : "max m(jj) dphi", 
+    "mjj_dr"      : "max m(jj) dr", 
 }
 
 d_label_colors = {
@@ -45,18 +48,11 @@ d_label_colors = {
             "tt":                      (r"$t\bar{t}$",          [0.8, 0.8, 0.8]),
             "ttfake":                  (r"$t\bar{t}$ Nonprompt",[0.85, 0.85, 0.85]),
             "wjets":                   (r"W+jets",              [113./255,151./255,44./255]),
-            "tth":                     (r"$t\bar{t}H$",         [0.4, 0.4, 0.6]),
-            "ttw":                     (r"$t\bar{t}W$",         [0.0, 0.4, 0.0]),
-            "ttz":                     (r"$t\bar{t}Z$",         [0.4, 0.8, 0.4]),
-            #"zbb":                     (r"$t\bar{t}Z$(bb)",     [0.3, 0.6, 0.4]),
-            "wz":                      (r"WZ" ,                 [1.0,0.8,0.0]),
-            "vv":                      (r"VV",                  [0.0, 0.4, 0.8]),
-            "ttvv":                    (r"$t\bar{t}$VV",        [0.0, 0.4, 0.8]),
-            "tttt":                    (r"$t\bar{t}t\bar{t}$",  [0.786,0.147,0.022]),
+            "qqww":                    (r"$qqWW$",              [0.0, 0.4, 0.0]),
+            "wz":                      (r"$WZ$",                [0.4, 0.8, 0.4]),
             "wgamma":                  (r"W+$\gamma$",          "#9D7ABF"),
             "zgamma":                  (r"Z+$\gamma$",          "#8154AD"),
             "xg":                      (r"X+$\gamma$",          "#54267F"),
-            "raresnoxg":               ("Rare",                 [1.0, 0.4, 1.0]),
         }
 
 d_flat_systematics = {
@@ -75,29 +71,38 @@ bginfomc = {}
 bginfoall = {}
 
 bginfoall= {        
-    "br"            : { k:d_label_colors[k] for k in [ "ttw", "tth", "ttz", "fakes", "flips", "fakes_mc", "flips_mc", "xg", "ttvv", "rares"] },
-    "ssbr"          : { k:d_label_colors[k] for k in [ "ttw", "tth", "ttz", "fakes", "flips", "fakes_mc", "flips_mc", "xg", "ttvv", "rares"] },
-    "mlbr"          : { k:d_label_colors[k] for k in [ "ttw", "tth", "ttz", "fakes", "flips", "fakes_mc", "flips_mc", "xg", "ttvv", "rares"] },
-    "ssbr_mjj500"   : { k:d_label_colors[k] for k in [ "ttw", "tth", "ttz", "fakes", "flips", "fakes_mc", "flips_mc", "xg", "ttvv", "rares"] },
-    "mlbr_mjj500"   : { k:d_label_colors[k] for k in [ "ttw", "tth", "ttz", "fakes", "flips", "fakes_mc", "flips_mc", "xg", "ttvv", "rares"] },
+    "br"            : { k:d_label_colors[k] for k in [ "qqww", "wz", "fakes", "flips", "fakes_mc", "flips_mc", "xg", "rares"] },
+    "ssbr"          : { k:d_label_colors[k] for k in [ "qqww", "wz", "fakes", "flips", "fakes_mc", "flips_mc", "xg", "rares"] },
+    "mlbr"          : { k:d_label_colors[k] for k in [ "qqww", "wz", "fakes", "flips", "fakes_mc", "flips_mc", "xg", "rares"] },
+    "ssbr_mjj500"   : { k:d_label_colors[k] for k in [ "qqww", "wz", "fakes", "flips", "fakes_mc", "flips_mc", "xg", "rares"] },
+    "mlbr_mjj500"   : { k:d_label_colors[k] for k in [ "qqww", "wz", "fakes", "flips", "fakes_mc", "flips_mc", "xg", "rares"] },
     }
 
 
 
 bginfodata = {        
-    "br"            : { k:d_label_colors[k] for k in [ "ttw", "tth", "ttz", "fakes", "flips", "xg", "ttvv", "rares"] },
-    "ssbr"          : { k:d_label_colors[k] for k in [ "ttw", "tth", "ttz", "fakes", "flips", "xg", "ttvv", "rares"] },
-    "mlbr"          : { k:d_label_colors[k] for k in [ "ttw", "tth", "ttz", "fakes", "flips", "xg", "ttvv", "rares"] },
-    "ssbr_mjj500"   : { k:d_label_colors[k] for k in [ "ttw", "tth", "ttz", "fakes", "flips", "xg", "ttvv", "rares"] },
-    "mlbr_mjj500"   : { k:d_label_colors[k] for k in [ "ttw", "tth", "ttz", "fakes", "flips", "xg", "ttvv", "rares"] },
+    "br"            : { k:d_label_colors[k] for k in [ "qqww", "wz", "fakes", "flips", "xg", "rares"] },
+    "ssbr"          : { k:d_label_colors[k] for k in [ "qqww", "wz", "fakes", "flips", "xg", "rares"] },
+    "mlbr"          : { k:d_label_colors[k] for k in [ "qqww", "wz", "fakes", "flips", "xg", "rares"] },
+    "ssbr_mjj500"   : { k:d_label_colors[k] for k in [ "qqww", "wz", "fakes", "flips", "xg", "rares"] },
+    "mlbr_mjj500"   : { k:d_label_colors[k] for k in [ "qqww", "wz", "fakes", "flips", "xg", "rares"] },
     }
 
 bginfomc = {
-    "br"            : { k:d_label_colors[k] for k in [ "ttw", "tth", "ttz", "fakes_mc", "flips_mc", "xg", "ttvv", "rares"] },
-    "ssbr"          : { k:d_label_colors[k] for k in [ "ttw", "tth", "ttz", "fakes_mc", "flips_mc", "xg", "ttvv", "rares"] },
-    "mlbr"          : { k:d_label_colors[k] for k in [ "ttw", "tth", "ttz", "fakes_mc", "flips_mc", "xg", "ttvv", "rares"] },
-    "ssbr_mjj500"   : { k:d_label_colors[k] for k in [ "ttw", "tth", "ttz", "fakes_mc", "flips_mc", "xg", "ttvv", "rares"] },
-    "mlbr_mjj500"   : { k:d_label_colors[k] for k in [ "ttw", "tth", "ttz", "fakes_mc", "flips_mc", "xg", "ttvv", "rares"] },
+    "br"            : { k:d_label_colors[k] for k in [ "qqww", "wz", "fakes_mc", "flips_mc", "xg", "rares"] },
+    "ssbr"          : { k:d_label_colors[k] for k in [ "qqww", "wz", "fakes_mc", "flips_mc", "xg", "rares"] },
+    "mlbr"          : { k:d_label_colors[k] for k in [ "qqww", "wz", "fakes_mc", "flips_mc", "xg", "rares"] },
+    "ssbr_mjj500"   : { k:d_label_colors[k] for k in [ "qqww", "wz", "fakes_mc", "flips_mc", "xg", "rares"] },
+    "mlbr_mjj500"   : { k:d_label_colors[k] for k in [ "qqww", "wz", "fakes_mc", "flips_mc", "xg", "rares"] },
+    "ssbr_mjj500_njgt2"   : { k:d_label_colors[k] for k in [ "qqww", "wz", "fakes_mc", "flips_mc", "xg", "rares"] },
+    "mlbr_mjj500_njgt2"   : { k:d_label_colors[k] for k in [ "qqww", "wz", "fakes_mc", "flips_mc", "xg", "rares"] },
+    "br_deta"            : { k:d_label_colors[k] for k in [ "qqww", "wz", "fakes_mc", "flips_mc", "xg", "rares"] },
+    "ssbr_deta"          : { k:d_label_colors[k] for k in [ "qqww", "wz", "fakes_mc", "flips_mc", "xg", "rares"] },
+    "mlbr_deta"          : { k:d_label_colors[k] for k in [ "qqww", "wz", "fakes_mc", "flips_mc", "xg", "rares"] },
+    "ssbr_mjj500_deta"   : { k:d_label_colors[k] for k in [ "qqww", "wz", "fakes_mc", "flips_mc", "xg", "rares"] },
+    "mlbr_mjj500_deta"   : { k:d_label_colors[k] for k in [ "qqww", "wz", "fakes_mc", "flips_mc", "xg", "rares"] },
+    "ssbr_mjj500_deta_njgt2"   : { k:d_label_colors[k] for k in [ "qqww", "wz", "fakes_mc", "flips_mc", "xg", "rares"] },
+    "mlbr_mjj500_deta_njgt2"   : { k:d_label_colors[k] for k in [ "qqww", "wz", "fakes_mc", "flips_mc", "xg", "rares"] },
     }    
 # make these global for multiprocessing since uproot file objects can't be pickled
 files, other_files = {}, {}
@@ -307,22 +312,22 @@ if __name__ == "__main__":
             "mlbr",
             "ssbr_mjj500",
             "mlbr_mjj500",
-            #"ss0b2j",
-            #"ss1b2j",
-            #"ss2b2j",
-            #"mlbr",         
-            #"mllowmetonz2b",
-            #"ml2b2j",
-            #"ml1b1j",
-            #"mlbrinc",
+            "ssbr_mjj500_njgt2",
+            "mlbr_mjj500_njgt2",
+            "br_deta",
+            "ssbr_deta",
+            "mlbr_deta",
+            "ssbr_mjj500_deta",
+            "mlbr_mjj500_deta",
+            "ssbr_mjj500_deta_njgt2",
+            "mlbr_mjj500_deta_njgt2",
             #"osbr",
             #"tl",
-            #"mllowmetonz2b",
             ]
        
     #flavs = ["in"]
     flavs = ["ee","em","mm","in"]
-    inputdir = "test/"
+    inputdir = "newcat_newbabies/"
     outputdir = inputdir+"plots_sr_datamc2"
 
     make_plots(
@@ -333,32 +338,32 @@ if __name__ == "__main__":
             lumi="35.9",
             )
 
-#    # 2017 alone
-#    make_plots(
-#            outputdir=outputdir,
-#            inputdir=inputdir,
-#            regions = regions, flavs = flavs,
-#            year=2017,
-#            lumi="41.5",
-#            )
-#
-#    # 2018 alone
-#    make_plots(
-#            outputdir=outputdir,
-#            inputdir=inputdir,
-#            regions = regions, flavs = flavs,
-#            year=2018,
-#            lumi="59.7",
-#            )
-#
-#    # # 2016 + 2018 + 2017
-#    make_plots(
-#            outputdir=outputdir,
-#            inputdir=inputdir,
-#            regions = regions, flavs = flavs,
-#            year=2016, 
-#            lumi="137.2",
-#            other_years = [2017,2018],
-#            )
-#
-    os.system("niceplots test/plots_sr_datamc test")
+    # 2017 alone
+    make_plots(
+            outputdir=outputdir,
+            inputdir=inputdir,
+            regions = regions, flavs = flavs,
+            year=2017,
+            lumi="41.5",
+            )
+
+    # 2018 alone
+    make_plots(
+            outputdir=outputdir,
+            inputdir=inputdir,
+            regions = regions, flavs = flavs,
+            year=2018,
+            lumi="59.7",
+            )
+
+    # # 2016 + 2018 + 2017
+    make_plots(
+            outputdir=outputdir,
+            inputdir=inputdir,
+            regions = regions, flavs = flavs,
+            year=2016, 
+            lumi="137.2",
+            other_years = [2017,2018],
+            )
+
+    os.system(os.getenv('ANABASE')+"/Software/niceplots/niceplots.sh {}/plots_sr_datamc2 {}".format(inputdir,inputdir))
