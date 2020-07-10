@@ -39,9 +39,9 @@ procs_to_consider = [ # FIXME
 #procs_to_consider = ["wz"]#
 
 basedirs ={
-    2016: "/nfs-7/userdata/fgolf/babies/v1/2016/",
-    2017: "/nfs-7/userdata/fgolf/babies/v1/2017/",
-    2018: "/nfs-7/userdata/fgolf/babies/v1/2018/",
+    2016: "/nfs-7/userdata/fgolf/vbs/babies/v1/2016/",
+    2017: "/nfs-7/userdata/fgolf/vbs/babies/v1/2017/",
+    2018: "/nfs-7/userdata/fgolf/vbs/babies/v1/2018/",
 
 #    2016: "/home/users/namin/2018/fourtop/all/FTAnalysis/analysis/yields/local/year_2016/",
 #    2017: "/home/users/namin/2018/fourtop/all/FTAnalysis/analysis/yields/local/year_2017/",
