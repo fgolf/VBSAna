@@ -21,6 +21,7 @@
 #include "../../common/CORE/Tools/utils.h"
 #include "../misc/common_utils.h"
 #include "../misc/tqdm.h"
+#include <fstream>
 
 #define MZ 91.2
 
@@ -349,6 +350,11 @@ bool pass_cut(bool cut_val, int& cut_index,TH1D *h, float weight) {
     return cut_val;
 }
 
+void write_debug(std::ofstream& inf, int r, int l, int e) {
+    inf << Form("%d,%d,%d",r,l,e) << endl;
+    return;
+}
+
 int ScanChain(TChain *ch, TString options="", TString outputdir="outputs"){
 
     signal(SIGINT, [](int){
@@ -364,6 +370,8 @@ int ScanChain(TChain *ch, TString options="", TString outputdir="outputs"){
     bool new2016FRBins = options.Contains("new2016FRBins");
     bool noISRWeights = options.Contains("noISRWeights");
     bool isData = options.Contains("doData");
+    bool debug = options.Contains("debug");
+
 
     //FG what is this for???
     //ana_t analysis = FTANA;
@@ -432,6 +440,11 @@ int ScanChain(TChain *ch, TString options="", TString outputdir="outputs"){
     TRandom *tr1 = new TRandom();
 
     if (!quiet) cout << "Working on " << proc << endl;
+
+    // open file to write debug
+    std::ofstream dfile;
+    std::cout << "debug: " << debug << ", outputdir  = " << outputdir.Data() << ", title = " << ch->GetTitle() << endl;
+    if (debug and not dfile.is_open()) dfile.open(Form("%s/debug_%s.dat", outputdir.Data(), ch->GetTitle()), ios::out);
 
     vector<string> regions =
     {			    
@@ -638,6 +651,9 @@ int ScanChain(TChain *ch, TString options="", TString outputdir="outputs"){
             float mjj_max_dr   = max_mjj_dr(jets_ro);
 
             if (not pass_cut(mjj_max>120, cut_index,h_cuts,weight)) continue; // cut_index incremented to 4 
+
+            if (debug and dfile.is_open()) write_debug(dfile,ss::run(),ss::lumi(),ss::event()); 
+
             pass_cut(mjj_max>120, cut_index,h_cuts,weight);
             pass_cut(fabs(mjj_max_deta)>2.5, cut_index,h_cuts,weight);
             pass_cut(mjj_max>500, cut_index,h_cuts,weight);
@@ -725,6 +741,7 @@ int ScanChain(TChain *ch, TString options="", TString outputdir="outputs"){
     out_tree->Write();
     f1->Close();
     delete h_cuts;
+    if (dfile.is_open()) dfile.close();
     if (!quiet) cout << "\n Done!" << endl;
     return 0;
 }
