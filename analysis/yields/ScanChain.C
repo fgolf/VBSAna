@@ -350,8 +350,8 @@ bool pass_cut(bool cut_val, int& cut_index,TH1D *h, float weight) {
     return cut_val;
 }
 
-void write_debug(std::ofstream& inf, int r, int l, int e) {
-    inf << Form("%d,%d,%d",r,l,e) << endl;
+void write_debug(std::ofstream& inf, int r, int l, int e, int c) {
+    inf << Form("%d,%d,%d,%d",r,l,e,c) << endl;
     return;
 }
 
@@ -615,6 +615,7 @@ int ScanChain(TChain *ch, TString options="", TString outputdir="outputs"){
                 weight *=ss::decayWSF();	
             }
 
+            if (debug and dfile.is_open()) write_debug(dfile,ss::run(),ss::lumi(),ss::event(),cut_index); 
             if (not pass_cut(vdilep_good_ss.size(),cut_index,h_cuts,weight)) continue;
             // cut_index incremented to 2
 
@@ -624,6 +625,7 @@ int ScanChain(TChain *ch, TString options="", TString outputdir="outputs"){
                 else             return (p1*ccpt1/p1.pt() + p2*ccpt2/p2.pt()).M();
             };
 
+            if (debug and dfile.is_open()) write_debug(dfile,ss::run(),ss::lumi(),ss::event(),cut_index); 
             if (pass_cut(ss::madeExtraZ(),cut_index,h_cuts,weight)) continue;
             // cut_index incremented to 3
 
@@ -642,7 +644,10 @@ int ScanChain(TChain *ch, TString options="", TString outputdir="outputs"){
             unsigned int njets = jets_ro.size();
             sort(jets_ro.begin(),jets_ro.end(),[](const Jet &lhs, const Jet &rhs) { return lhs.v.pt() > rhs.v.pt(); } );
 
+            if (debug and dfile.is_open()) write_debug(dfile,ss::run(),ss::lumi(),ss::event(),cut_index); 
             if (not pass_cut(njets>1,cut_index,h_cuts,weight)) continue; // cut_index incremented to 4 
+
+            if (debug and dfile.is_open()) write_debug(dfile,ss::run(),ss::lumi(),ss::event(),cut_index); 
             if (pass_cut(ss::nbtags(),cut_index,h_cuts,weight)) continue; // cut_index incremented to 5 
 
             float mjj_max = max_mjj(jets_ro);
@@ -650,16 +655,29 @@ int ScanChain(TChain *ch, TString options="", TString outputdir="outputs"){
             float mjj_max_dphi = max_mjj_dphi(jets_ro);
             float mjj_max_dr   = max_mjj_dr(jets_ro);
 
+            if (debug and dfile.is_open()) write_debug(dfile,ss::run(),ss::lumi(),ss::event(),cut_index); 
             if (not pass_cut(mjj_max>120, cut_index,h_cuts,weight)) continue; // cut_index incremented to 4 
 
-            if (debug and dfile.is_open()) write_debug(dfile,ss::run(),ss::lumi(),ss::event()); 
 
+            if (debug and dfile.is_open()) write_debug(dfile,ss::run(),ss::lumi(),ss::event(),cut_index); 
             pass_cut(mjj_max>120, cut_index,h_cuts,weight);
+
+            if (debug and dfile.is_open()) write_debug(dfile,ss::run(),ss::lumi(),ss::event(),cut_index); 
             pass_cut(fabs(mjj_max_deta)>2.5, cut_index,h_cuts,weight);
+
+            if (debug and dfile.is_open()) write_debug(dfile,ss::run(),ss::lumi(),ss::event(),cut_index); 
             pass_cut(mjj_max>500, cut_index,h_cuts,weight);
+
+            if (debug and dfile.is_open()) write_debug(dfile,ss::run(),ss::lumi(),ss::event(),cut_index); 
             pass_cut(njets>2, cut_index,h_cuts,weight);
+
+            if (debug and dfile.is_open()) write_debug(dfile,ss::run(),ss::lumi(),ss::event(),cut_index); 
             pass_cut(njets>3, cut_index,h_cuts,weight);
+
+            if (debug and dfile.is_open()) write_debug(dfile,ss::run(),ss::lumi(),ss::event(),cut_index); 
             pass_cut(njets>4, cut_index,h_cuts,weight);
+
+            if (debug and dfile.is_open()) write_debug(dfile,ss::run(),ss::lumi(),ss::event(),cut_index); 
             pass_cut(njets>5, cut_index,h_cuts,weight);
 
             auto fill_region = [&](const string& region, float weight) {
