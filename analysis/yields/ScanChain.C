@@ -138,6 +138,7 @@ std::pair<int,int> getMaxMjjJets (std::vector<Jet> vj) {
         for (unsigned int j =i+1; j < vj.size(); j++) {
             float tmp_mass = (vj.at(i).v+vj.at(j).v).mass();
             if (tmp_mass > mass) 
+                mass = tmp_mass;
                 ret = std::make_pair(i,j);
         }
     }
